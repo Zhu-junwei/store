@@ -1,15 +1,16 @@
 package com.store.service.impl;
 
 import com.store.dao.UserDao;
-import com.store.dao.impl.UserDaoImp;
 import com.store.domain.User;
 import com.store.service.UserService;
+import com.store.utils.BeanFactory;
 
 public class UserServiceImp implements UserService {
 
+	UserDao userDao = (UserDao) BeanFactory.createObject("UserDao");
+	
 	@Override
 	public User userLogin(User user) {
-		UserDao userDao = new UserDaoImp();
 		User userReturn = userDao.userLogin(user);
 		if(null == userReturn) {
 			throw new RuntimeException("用户名或密码错误");
@@ -21,14 +22,12 @@ public class UserServiceImp implements UserService {
 
 	@Override
 	public int userRegist(User user) {
-		UserDao userDao = new UserDaoImp();
 		return userDao.userRegist(user);
 	}
 
 	@Override
 	public boolean userActive(String code) {
 		boolean flag = false ;
-		UserDao userDao = new UserDaoImp();
 		User user = userDao.userActive(code);
 		//有此用户
 		if(null != user) {

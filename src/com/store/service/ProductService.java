@@ -17,4 +17,6 @@ public interface ProductService {
 
 	PageModel<Product> findAllProductsWithPage(int curNum);
 
+	void saveProduct(Product product);
+
 }

@@ -20,6 +20,8 @@ public interface ProductDao {
 
 	List<Product> findAllProductsWithPage(int startIndex, int pageSize);
 
+	void saveProduct(Product product);
+
 
 
 }

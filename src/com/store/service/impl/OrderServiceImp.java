@@ -5,16 +5,18 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.store.dao.OrderDao;
-import com.store.dao.impl.OrderDaoImp;
 import com.store.domain.Order;
 import com.store.domain.OrderItem;
 import com.store.domain.User;
 import com.store.service.OrderService;
+import com.store.utils.BeanFactory;
 import com.store.utils.DBCPUtil;
 import com.store.utils.PageModel;
 
 public class OrderServiceImp implements OrderService{
-	OrderDao orderDao = new OrderDaoImp();
+	
+	OrderDao orderDao = (OrderDao) BeanFactory.createObject("OrderDao");
+	
 	@Override
 	public void saveOrder(Order order) {
 		
@@ -72,6 +74,16 @@ public class OrderServiceImp implements OrderService{
 	public Order findOrderByOid(String oid) {
 		
 		return orderDao.findOrderByOid(oid);
+	}
+
+	@Override
+	public List<Order> findOrders() {
+		return orderDao.findOrders();
+	}
+
+	@Override
+	public List<Order> findOrders(String state) {
+		return orderDao.findOrders(state);
 	}
 
 }

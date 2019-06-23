@@ -145,4 +145,16 @@ public class OrderDaoImp implements OrderDao {
 		return order;
 	}
 
+	@Override
+	public List<Order> findOrders() {
+		String sql = "select * from orders";
+		return CommonCRUDUtil.query(sql, new BeanListHandler<Order>(Order.class));
+	}
+
+	@Override
+	public List<Order> findOrders(String state) {
+		String sql = "select * from orders where state=?";
+		return CommonCRUDUtil.query(sql, new BeanListHandler<Order>(Order.class),state);
+	}
+
 }

@@ -52,11 +52,26 @@ public class ProductDaoImp implements ProductDao {
 
 	@Override
 	public List<Product> findAllProductsWithPage(int startIndex, int pageSize) {
-		String sql = "select * from product limit ? , ?";
+		String sql = "select * from product order by pdate desc limit ? , ?";
 		return CommonCRUDUtil.query(sql, new BeanListHandler<Product>(Product.class), startIndex,pageSize);
 	}
 
-	
-
+	@Override
+	public void saveProduct(Product product) {
+		String sql = "insert into product values(?,?,?,?,?,?,?,?,?,?)";
+		Object[] args = {
+				product.getPid(),
+				product.getPname(),
+				product.getMarket_price(),
+				product.getShop_price(),
+				product.getPimage(),
+				product.getPdate(),
+				product.getIs_hot(),
+				product.getPdesc(),
+				product.getPflag(),
+				product.getCid()
+		};
+		CommonCRUDUtil.update(sql, args);
+	}
 
 }

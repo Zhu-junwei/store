@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 配置dao层实现的对应关系 -->
+<beans>
+	<bean id="CategoryDao" class="com.store.dao.impl.CategoryDaoImp" />
+	<bean id="OrderDao" class="com.store.dao.impl.OrderDaoImp" />
+	<bean id="ProductDao" class="com.store.dao.impl.ProductDaoImp" />
+	<bean id="UserDao" class="com.store.dao.impl.UserDaoImp" />
+</beans>

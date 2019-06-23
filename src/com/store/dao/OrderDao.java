@@ -22,6 +22,10 @@ public interface OrderDao {
 
 	List<Order> findMyOrdersWithPage(User user, int startIndex, int pageSize);
 
-	Order findOrderByOid(String oid); 
+	Order findOrderByOid(String oid);
+
+	List<Order> findOrders();
+
+	List<Order> findOrders(String state); 
 
 }

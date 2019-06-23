@@ -3,14 +3,15 @@ package com.store.service.impl;
 import java.util.List;
 
 import com.store.dao.ProductDao;
-import com.store.dao.impl.ProductDaoImp;
 import com.store.domain.Product;
 import com.store.service.ProductService;
+import com.store.utils.BeanFactory;
 import com.store.utils.PageModel;
 
 public class ProductServiceImp implements ProductService {
 
-	ProductDao productdao = new ProductDaoImp();
+	ProductDao productdao = (ProductDao) BeanFactory.createObject("ProductDao");
+	
 	@Override
 	public List<Product> findHots() {
 		return productdao.findHots();
@@ -56,6 +57,12 @@ public class ProductServiceImp implements ProductService {
 		//3_关联url
 		pm.setUrl("AdminProductServlet?method=findAllProductsWithPage");
 		return pm;
+	}
+
+	@Override
+	public void saveProduct(Product product) {
+		productdao.saveProduct(product);
+		
 	}
 
 }
